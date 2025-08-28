@@ -1,88 +1,74 @@
-# Documentación Técnica: Stellar CLI y Soroban en Linux  
-## Errores Comunes y Soluciones  
+# 🌟 Stellar CLI - Documentación y Guías
 
-### Información del Sistema  
-- **Distribución testeada**: Ubuntu/Debian (Lenovo ThinkBook 13s IML)  
-- **Versión Stellar CLI**: v23.5.0  
-- **Arquitectura**: x86_64  
+Este repositorio contiene documentación práctica, guías de instalación y herramientas para trabajar con Stellar CLI en Linux.
 
----  
+---
 
-### 1. Error de Compilación: Linker `cc` no encontrado  
-**Descripción del Error**  
+## 📚 Contenido del Repositorio
 
-Al intentar instalar Stellar CLI usando:
+### 📖 [`stellar_CLI.md`](/stellar_CLI.md)
+**¿Qué es y para qué sirve Stellar CLI?**
+- Explicación completa de las capacidades de Stellar CLI
+- Diferencias entre operaciones clásicas (L1) y contratos inteligentes (Soroban L2)
+- Ejemplos prácticos de uso unificado
+- Comparación con la antigua Soroban CLI (ahora obsoleta)
 
+### 🔧 [`instalacion_tecnica.md`](/instalacion_tecnica.md)
+**Guía técnica completa de instalación**
+- Proceso paso a paso de instalación en Ubuntu/Debian
+- **Errores comunes y sus soluciones**
+- Instalación de Rust y dependencias del sistema
+- Problemas de compilación con OpenSSL y memoria
+- Alternativas: binario precompilado vs compilación desde fuente
+- Información del sistema probado (Lenovo ThinkBook 13s IML)
 
+### 🛠️ [`check-stellar-requirements.sh`](/hcheck-stellar-requirements.sh)
+**Script de verificación automática**
+- Verifica si tu sistema tiene todos los requisitos
+- Detecta dependencias faltantes
+- Revisa instalación de Rust y Stellar CLI
+- Proporciona comandos específicos para resolver problemas
+
+---
+
+## 🚀 Inicio Rápido
+
+### ¿Problemas con Stellar CLI?
+
+1. **Ejecuta el script de diagnóstico:**
+   ```bash
+   chmod +x /home/ar3lisa/Documentos/tec-Stellar/check-stellar-requirements.sh
+   ./home/ar3lisa/Documentos/tec-Stellar/check-stellar-requirements.sh
+   ```
+
+---
+
+## 📋 Información del Sistema
+
+**Probado en:**
+- Ubuntu/Debian (Lenovo ThinkBook 13s IML)
+- Stellar CLI v23.0.1
+- Arquitectura x86_64
+
+---
+
+## 🤝 Contribuciones
+
+¿Encontraste un error nuevo? ¿Hay una solución mejor?
+- Abre un issue describiendo el problema
+- Comparti tu solución en las discusiones
+- Propone mejoras a la documentación
+
+---
+
+## 📄 Licencia
+
+Este repositorio de documentación es de uso libre para la comunidad Stellar.
+
+---
+
+## 🛠️ ¿Primer paso?
+Ejecuta:
 ```bash
-curl -L https://github.com/stellar/stellar-cli/releases/download/v23.5.0/stellar-x86_64-unknown-linux-gnu.tar.gz | tar xz
+./check-stellar-requirements.sh
 ```
-
-Se presenta el siguiente error durante la compilación:
-
-```bash
-Compiling ryu v1.0.18
-error: linker `cc` not found
-  |
-  = note: No such file or directory (os error 2)
-error: could not compile `serde_json` (build script) due to 1 previous error
-warning: build failed, waiting for other jobs to finish...
-error: could not compile `serde` (build script) due to 1 previous error
-error: could not compile `proc-macro2` (build script) due to 1 previous error
-error: could not compile `libc` (build script) due to 1 previous error
-error: could not compile `typenum` (build script) due to 1 previous error
-error: failed to compile `stellar-cli v23.0.1`, intermediate artifacts can be found at `/tmp/cargo-installL1MwIU`.
-To reuse those artifacts with a future compilation, set the environment variable `CARGO_TARGET_DIR` to that path.
-```
-
-### **Causa del Error**  
-El sistema no tiene instaladas las herramientas de desarrollo básicas de C/C++, específicamente:  
-- Compilador GCC  
-- Herramientas de desarrollo (`make`, etc.)  
-- Headers del sistema  
-
-### **Solución**  
-Instalar las herramientas de desarrollo esenciales:  
-
-```bash
-sudo apt update && sudo apt install -y build-essential
-```
-
-### 📦 **¿Qué incluye `build-essential`?**  
-
-El paquete `build-essential` en sistemas basados en **Debian/Ubuntu** instala las herramientas fundamentales para compilar software en C/C++ y gestionar paquetes. Contiene:  
-
-| Herramienta       | Descripción                                                                 |
-|-------------------|-----------------------------------------------------------------------------|
-| **`gcc`**         | Compilador GNU C (*GNU Compiler Collection*).                               |
-| **`g++`**         | Compilador GNU C++ (para código C++).                                       |
-| **`make`**        | Utilidad para automatizar la compilación (ejecuta instrucciones de `Makefile`). |
-| **`libc6-dev`**   | Bibliotecas de desarrollo de C (headers como `<stdio.h>`, `<stdlib.h>`, etc.). |
-| **`dpkg-dev`**    | Herramientas para construir paquetes `.deb` (empaquetado en Debian).        |
-
-**Nota**: También instala dependencias secundarias como `binutils`, `patch`, y otros componentes esenciales.  
-
-
----
-
-
----  
-# Notas para el Equipo de Stellar
-
----
-
-### Problema de Dependencias
-
-El error del linker `cc` sugiere que la **documentación oficial** debería incluir los **prerequisitos del sistema** de forma más clara.
-
----
-
-### Método de Instalación
-
-Considerar la posibilidad de proporcionar **binarios pre-compilados**, así como **instrucciones claras** sobre las dependencias necesarias para la compilación.
-
----
-
-### Detección de Sistema
-
-Sería muy útil que el instalador pudiera **detectar automáticamente las dependencias faltantes** en el sistema del usuario.

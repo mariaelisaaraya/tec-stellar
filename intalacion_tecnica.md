@@ -52,7 +52,7 @@ rustc --version
 Soroban (Stellar) requiere compilar a WebAssembly (wasm). Se añadió el target:
 
 ```bash
-rustup target add wasm32-unknown-unknown
+rustup target add wasm32-none
 ```
 
 Esto descarga e instala los componentes necesarios para compilar contratos Rust a WASM.
